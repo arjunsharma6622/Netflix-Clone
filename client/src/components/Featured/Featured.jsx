@@ -26,9 +26,9 @@ const Featured = ({type}) => {
                 </select>
             </div>
         )}
-        <img src="https://4kwallpapers.com/images/wallpapers/mortal-kombat-2021-movies-poster-4096x1895-4902.jpg" alt="" width={"100%"}/>
+        <img src="https://wallpapersmug.com/download/1600x900/fadc0f/avengers-age-of-ultron-superhero-movie-poster.jpg" alt="" width={"100%"}/>
         <div className="info">
-            <img src="https://cdn.mos.cms.futurecdn.net/sWs4v6RWzrBMPi4mPvQjcZ.jpg" alt="" />
+            <img src="https://www.freepnglogos.com/uploads/avengers-png-logo/avengers-logo-png-transparent-avengers-logo-images-7.png" alt="" className='trailer_img'/>
             <span className="desc">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste nemo sunt praesentium cupiditate distinctio commodi obcaecati alias temporibus architecto ab!
             </span>

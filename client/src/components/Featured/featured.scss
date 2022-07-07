@@ -1,5 +1,5 @@
 .featured{
-    height: 90vh;
+    height: 78vh;
     position: relative;
 
     .category{
@@ -31,12 +31,17 @@
     }
 
     .info{
+        .trailer_img{
+            border-radius: 5px;
+            cursor: pointer;
+        }
         width: 35%;
         position: absolute;
         left: 50px;
         bottom: 100px;
         display: flex;
         flex-direction: column;
+        // opacity: 1;
 
         img{
             width: 300px;
@@ -54,7 +59,7 @@
                 padding: 10px 20px;
                 // background-color: white;
                 border: none;
-                border-radius: 10px;
+                border-radius: 5px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
