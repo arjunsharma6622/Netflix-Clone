@@ -1,5 +1,7 @@
 import React, { useRef, useState } from "react";
 import "./register.scss";
+import { Link } from "react-router-dom";
+import axios from "axios"
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -14,18 +16,35 @@ const Register = () => {
 
   const handleFinishClick = () => {
     setPassword(passwordRef.current.value)
+    const userData = {
+      
+    }
+    axios.post("")
   }
+
 
   return (
     <div className="register">
       <div className="top">
         <div className="wrapper">
+
+
+        <Link to={"/"}>
           <img
             src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c529.png"
             className="logo"
             alt=""
           />
-          <button className="loginButton">Sign In</button>
+          </Link>
+
+
+          <Link to={"/login"}>
+          <button className="loginButton">
+            Sign In
+            </button>
+          </Link>
+          
+          
         </div>
       </div>
 
@@ -46,12 +65,12 @@ const Register = () => {
           </div>
         ) 
         : (
-          <form className="input">
+          <>
             <input type="password" placeholder="password" ref={passwordRef} />
             <button className="registerButton" onClick={handleFinishClick}>
               Start
             </button>
-          </form>
+            </>
         )}
       </div>
     </div>

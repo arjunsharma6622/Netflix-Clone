@@ -12,7 +12,6 @@ const Navbar = () => {
         return () => (window.onscroll = null)
     }
 
-
   return (
     <div className={isScrolled ? "navbar scrolled" : "navbar"}>
         <div className="container">

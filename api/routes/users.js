@@ -70,7 +70,7 @@ router.get("/", verify, async (req, res) => {
     const query = req.query.new
     if (req.user.isAdmin) {
         try {
-            const users = query ? await User.find().sort({ _id: 1 }).limit(10) : await User.find()
+            const users = query ? await User.find().sort({ _id: 1 }).limit(5) : await User.find()
             //if the _id:-1 then we will get all the added user in reverse order
             //and the limit is going to give the maximum number of uers we watn
             res.status(200).json(users)

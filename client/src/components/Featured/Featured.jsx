@@ -1,8 +1,28 @@
 import { InfoOutlined, PlayArrow } from '@material-ui/icons'
 import React from 'react'
+import { useEffect } from 'react'
+import { useState } from 'react'
 import "./featured.scss"
+import axios from "axios"
 
 const Featured = ({type}) => {
+    const [content, setContent] = useState()
+
+    useEffect(() => {
+        const getRandom = async () => {
+            try{
+                const res = await axios.get(`http://localhost:8000/api/movie/random?type=${type}`)
+                setContent(res.data)
+                console.log(res.data)
+            }
+            catch(err){
+                console.log(err)
+            }
+        }
+        getRandom()
+    }, [type])
+
+
   return (
     <div className='featured'>
         {type && (
@@ -26,11 +46,11 @@ const Featured = ({type}) => {
                 </select>
             </div>
         )}
-        <img src="https://wallpapersmug.com/download/1600x900/fadc0f/avengers-age-of-ultron-superhero-movie-poster.jpg" alt="" width={"100%"}/>
+        <img src={content && content[0].img} alt="" width={"100%"}/>
         <div className="info">
-            <img src="https://www.freepnglogos.com/uploads/avengers-png-logo/avengers-logo-png-transparent-avengers-logo-images-7.png" alt="" className='trailer_img'/>
+            <img src={content && content[0].imgTitle} alt="" className='trailer_img'/>
             <span className="desc">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste nemo sunt praesentium cupiditate distinctio commodi obcaecati alias temporibus architecto ab!
+                {content && content[0].desc}
             </span>
             <div className="buttons">
                 <button className="play">

@@ -22,7 +22,7 @@ router.post("/", verify, async (req, res) => {
 
 
 })
-
+ 
 
 //DELETE
 
@@ -46,7 +46,7 @@ router.delete("/:id", verify, async (req, res) => {
 
 
 //GET List
-router.get("/", async (req, res) => {
+router.get("/", verify, async (req, res) => {
     const typeQuery = req.query.type
     const genreQuery = req.query.genre
     
