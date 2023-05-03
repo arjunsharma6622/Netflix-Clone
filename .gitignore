@@ -5,6 +5,10 @@
 /.pnp
 .pnp.js
 
+/admin/node_modules/
+/admin/yarn.lock
+
+
 # testing
 /coverage
 

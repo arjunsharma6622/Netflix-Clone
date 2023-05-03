@@ -12,7 +12,7 @@ export default function WidgetSm() {
     const getUsers = async () => {
       try{
         const res = await axios.get("http://localhost:8000/api/user?new=true",{headers : {
-          token : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYTBiYWFkZmY1YTEyOTg0ZmY5YjgwYSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY1ODY1OTEwNSwiZXhwIjoxNjU5MDkxMTA1fQ.FNFWKEGCd_K3UmcF5HjLWYCxHEY3SvRNGgWeK-a9gHM"
+          token : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYTBiYjMwZmY1YTEyOTg0ZmY5YjgxNCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY4MzExOTIwOSwiZXhwIjoxNjgzNTUxMjA5fQ.rymCQfwpsdWlcgs8G2zK8CiIaEoDgZI6kp6MuxHsJMI"
         }})
 
         console.log(res.data)

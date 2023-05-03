@@ -10,33 +10,34 @@ import ProductList from "./pages/productList/ProductList";
 import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
 
+
 function App() {
   return (
     <BrowserRouter>
       <Topbar />
       <div className="container">
         <Sidebar />
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/users">
-            <UserList />
-          </Route>
-          <Route path="/user/:userId">
-            <User />
-          </Route>
-          <Route path="/newUser">
-            <NewUser />
-          </Route>
-          <Route path="/movies">
-            <ProductList />
-          </Route>
-          <Route path="/product/:productId">
-            <Product />
-          </Route>
-          <Route path="/newproduct">
-            <NewProduct />
-          </Route>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/users">
+          <UserList />
+        </Route>
+        <Route path="/user/:userId">
+          <User />
+        </Route>
+        <Route path="/newUser">
+          <NewUser />
+        </Route>
+        <Route path="/movies">
+          <ProductList />
+        </Route>
+        <Route path="/product/:productId">
+          <Product />
+        </Route>
+        <Route path="/newproduct">
+          <NewProduct />
+        </Route>
       </div>
     </BrowserRouter>
   );
