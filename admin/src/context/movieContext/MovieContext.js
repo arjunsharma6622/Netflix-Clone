@@ -1,8 +1,8 @@
-import AuthReducer from "./AuthReducer";
+import MovieReducer from "./MovieReducer";
 import {createContext, useEffect, useReducer} from "react"
 
 const Initial_State = {
-    user : JSON.parse(localStorage.getItem('user')) || null,
+    movies : [],
     isFetching : false,
     error : false
 }

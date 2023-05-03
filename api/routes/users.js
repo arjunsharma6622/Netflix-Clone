@@ -67,7 +67,7 @@ router.get("/find/:id", async (req, res) => {
 
 
 router.get("/", verify, async (req, res) => {
-    const query = await req.query.new
+    const query = req.query.new
     if (req.user.isAdmin) {
         try {
             const users = query ? await User.find().sort({ _id: 1 }).limit(5) : await User.find()
