@@ -12,7 +12,7 @@ import {
   ChatBubbleOutline,
   WorkOutline,
   Report,
-  PlayCircleOutline
+  PlayCircleOutline,
 } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 

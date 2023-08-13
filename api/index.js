@@ -17,12 +17,35 @@ dotenv.config()
 const PORT = 8000
 const DB_URL = process.env.DB_URL
 
-app.use(cors())
+app.use(cors(
+    {
+        origin: "*"
+    }
+))
 app.use(express.json())
 app.use("/api/auth", authRoute)
 app.use("/api/user", userRoute)
 app.use("/api/movie", movieRoute)
 app.use("/api/list", listRoute)
+
+
+// errorMiddleware.js
+
+function errorMiddleware(err, req, res, next) {
+    console.error("An error occurred:", err);
+
+    // Handle specific error cases
+    if (err.name === "UnauthorizedError") {
+        return res.status(401).json({ error: "Unauthorized" });
+    }
+
+    // Handle other errors
+    res.status(500).json({ error: "An internal server error occurred" });
+}
+
+module.exports = errorMiddleware;
+
+app.use(errorMiddleware)
 
 //DB Connection
 mongoose.connect(DB_URL, {
