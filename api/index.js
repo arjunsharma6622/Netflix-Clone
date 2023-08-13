@@ -19,7 +19,8 @@ const DB_URL = process.env.DB_URL
 
 app.use(cors(
     {
-        origin: "*"
+        origin: "*",
+
     }
 ))
 app.use(express.json())
@@ -29,7 +30,6 @@ app.use("/api/movie", movieRoute)
 app.use("/api/list", listRoute)
 
 
-// errorMiddleware.js
 
 function errorMiddleware(err, req, res, next) {
     console.error("An error occurred:", err);
