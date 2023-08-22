@@ -26,7 +26,7 @@ function App() {
       <div className="container">
         <Sidebar />
         <Switch>
-
+          {!user && <Redirect to="/login" />}
           <Route exact path="/">
             <Home />
           </Route>
