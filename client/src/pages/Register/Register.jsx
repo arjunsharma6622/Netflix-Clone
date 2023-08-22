@@ -6,9 +6,11 @@ import axios from "axios"
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [userName, setUserName] = useState("");
 
   const emailRef = useRef();
   const passwordRef = useRef();
+  const usernameRef = useRef();
 
   const handleStartClick = () => {
     setEmail(emailRef.current.value);
@@ -16,7 +18,9 @@ const Register = () => {
 
   const handleFinishClick = async () => {
     setPassword(passwordRef.current.value)
+    setUserName(usernameRef.current.value)
     const userData = {
+      username : userName,
       email,
       password
     }
@@ -26,7 +30,7 @@ const Register = () => {
       console.log(res.data)
     }
     catch(err){
-      console.log(err)
+      console.log(err, "\n" ,err.response.data)
     }
   }
 
@@ -73,12 +77,13 @@ const Register = () => {
           </div>
         ) 
         : (
-          <>
+          <div className="userform">
+            <input type="text" placeholder="username" ref={usernameRef} />
             <input type="password" placeholder="password" ref={passwordRef} />
             <button className="registerButton" onClick={handleFinishClick}>
               Start
             </button>
-            </>
+            </div>
         )}
       </div>
     </div>

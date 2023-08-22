@@ -43,7 +43,7 @@
     }
 
     .container{
-        height: 100%;
+        height: 80%;
         width: 100%;
         top: 0;
         left: 0;
@@ -61,6 +61,41 @@
         }
         p{
             font-size: 20px;
+        }
+
+        .userform{
+            width: 50%;
+            background-color: white;
+            display: flex;
+            // flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            height: 50px;
+            margin-top: 20px;
+            border-radius: 5px;
+
+            input{
+                flex: 9;
+                height: 100%;
+                border: none;
+                border-left: 1px solid black;
+                padding: 0 10px;
+            }
+            input:focus{
+                outline: none;
+            }
+
+            .registerButton{
+                flex: 3;
+                height: 100%;
+                border: none;
+                padding: 0 10px;
+                color: white;
+                background-color: red;
+                font-size: 20px;
+                cursor: pointer;
+            }
+
         }
         .input{
             width: 50%;
