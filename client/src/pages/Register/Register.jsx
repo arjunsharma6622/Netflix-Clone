@@ -14,12 +14,20 @@ const Register = () => {
     setEmail(emailRef.current.value);
   };
 
-  const handleFinishClick = () => {
+  const handleFinishClick = async () => {
     setPassword(passwordRef.current.value)
     const userData = {
-      
+      email,
+      password
     }
-    axios.post("")
+    console.log(userData)
+    try{
+      const res = await axios.post("http://localhost:8000/api/auth/register", userData);
+      console.log(res.data)
+    }
+    catch(err){
+      console.log(err)
+    }
   }
 
 
