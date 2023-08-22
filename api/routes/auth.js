@@ -12,7 +12,7 @@ dotenv.config()
 router.post("/register", async (req, res) => {
     const hashedPassword = cryptoJs.AES.encrypt(req.body.password, process.env.SECRET_KEY).toString()
     const newUser = new User({
-        username : req.body.username ? req.body.username : "",
+        username : req.body.username ? req.body.username : "user",
         email : req.body.email,
         password : hashedPassword
     })
