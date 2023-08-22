@@ -31,7 +31,7 @@ export default function Home() {
       try {
         const res = await axios.get("http://localhost:8000/api/user/stats", {
           headers: {
-            token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYTBiYWFkZmY1YTEyOTg0ZmY5YjgwYSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY5MTkwMDEwOSwiZXhwIjoxNjkyMzMyMTA5fQ.JoyU2BSfqnjispQFCAGC18YfwXylBFHzj9MKoab-ArM"
+            token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken
           },
         });
         const statsList = res.data.sort((a, b) => a._id - b._id)

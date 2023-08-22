@@ -1,3 +1,4 @@
+import React, { useContext } from "react";
 import Sidebar from "./components/sidebar/Sidebar";
 import Topbar from "./components/topbar/Topbar";
 import "./App.css";
@@ -10,25 +11,25 @@ import ProductList from "./pages/productList/ProductList";
 import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
 import Login from "./pages/login/Login";
+import { AuthContext } from "./context/authContext/AuthContext";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 function App() {
-
-
+  const {user} = useContext(AuthContext);
   return (
     <Router>
-      <Switch>
       <Route exact path="/login">
-        <Login />
+        {user ? Redirect('/'): <Login />}
+        {/* <Login /> */}
       </Route>
       <Topbar />
-      
       <div className="container">
         <Sidebar />
-        
+        <Switch>
+
           <Route exact path="/">
             <Home />
           </Route>
-
           <Route path="/users">
             <UserList />
           </Route>
@@ -47,9 +48,8 @@ function App() {
           <Route path="/newproduct">
             <NewProduct />
           </Route>
-        
+        </Switch>
       </div>
-      </Switch>
     </Router>
   );
 }
