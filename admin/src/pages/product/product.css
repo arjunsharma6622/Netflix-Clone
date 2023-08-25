@@ -49,6 +49,10 @@
   align-items: center;
 }
 
+.productInfoKey{
+  margin-right: 20px;
+}
+
 .productName {
   font-weight: 600;
 }
@@ -92,7 +96,7 @@
 .productFormLeft > input {
   margin-bottom: 10px;
   border: none;
-  padding: 5px;
+  padding: 10px 30px;
   border-bottom: 1px solid gray;
 }
 
