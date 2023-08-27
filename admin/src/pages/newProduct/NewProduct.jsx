@@ -1,6 +1,11 @@
 import { useState } from "react";
 import "./newProduct.css";
-import storage from "../../fbase";
+// import storage from "../../fbase";
+import app from "../../firebase"; // Import as default
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+const storage = getStorage(app);
+
+
 
 
 
@@ -28,24 +33,35 @@ export default function NewProduct() {
   }
 
   const upload = (items) => {
+    
+
     items.forEach(item => {
       console.log(item.file)
-      const uploadTask = storage.ref(`/items/${item.file.name}`).put(item.file);
-      upload.on("state_changes", snapshot => {
-        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        setProgress(progress)
-        console.log("Upload is " + progress + "% done");
-      }, (error) => {
-        console.log(error)
-      },
-      () => {
-        uploadTask.snapshot.ref.getDownloadURL().then(url => {
-          setMovie({ ...movie, [item.label]: url })
-          setUploaded(uploaded + 1)
-        })
-      }
+      // const uploadTask = storage.ref(`/items/${item.file.name}`).put(item.file);
+      // storage.
+      // const uploadTask = storage.ref(`/items/${item.file?.name}`).put(item.file&&item.file);
+      const storageRef = ref(storage, `/items/${item.file?.name}`);
+      const uploadTask = uploadBytesResumable(storageRef, item.file);
 
+
+
+      uploadTask.on("state_changed",
+        (snapshot) => {
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          setProgress(progress)
+          console.log("Upload is " + progress + "% done")
+        },
+        (error) => {
+          console.log(error)
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+            setMovie({ ...movie, [item.label]: url })
+            setUploaded(uploaded + 1)
+          })
+        }
       )
+
     })
   }
 
@@ -120,7 +136,7 @@ export default function NewProduct() {
 
         <div className="addProductItem">
           <label>Trailer</label>
-          <input type="file" name="trailer" onChange={(e) => {console.log(e.target.files[0]); setTrailer(e.target.files[0])}} />
+          <input type="file" name="trailer" onChange={(e) => { console.log(e.target.files[0]); setTrailer(e.target.files[0]) }} />
         </div>
         <div className="addProductItem">
           <label>Video</label>
