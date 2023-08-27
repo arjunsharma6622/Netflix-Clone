@@ -19,6 +19,7 @@ export default function NewProduct() {
   const [video, setVideo] = useState()
   const [uploaded, setUploaded] = useState(0)
   const [progress, setProgress] = useState(0)
+  const [currentFile, setCurrentFile] = useState('')
 
   console.log(movie)
   console.log(`Trailer ${trailer?.name}`)
@@ -37,10 +38,9 @@ export default function NewProduct() {
 
     items.forEach(item => {
       console.log(item.file)
-      // const uploadTask = storage.ref(`/items/${item.file.name}`).put(item.file);
-      // storage.
-      // const uploadTask = storage.ref(`/items/${item.file?.name}`).put(item.file&&item.file);
-      const storageRef = ref(storage, `/items/${item.file?.name}`);
+      setCurrentFile(item.label)
+      const fileName = new Date().getTime() + item.label + item.file?.name;
+      const storageRef = ref(storage, `/items/${fileName}`);
       const uploadTask = uploadBytesResumable(storageRef, item.file);
 
 
@@ -49,7 +49,7 @@ export default function NewProduct() {
         (snapshot) => {
           const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           setProgress(progress)
-          console.log("Upload is " + progress + "% done")
+          console.log("Upload of " + item.file.name + " is" + progress + "% done")
         },
         (error) => {
           console.log(error)
@@ -151,7 +151,8 @@ export default function NewProduct() {
 
       </form>
 
-      <h1>Upload Progress: {progress}%</h1>
+      {/* <h1>Upload Progress: {progress}%</h1> */}
+      <h2>{`upload of ${currentFile} is ${progress}%`}</h2>
     </div>
   );
 }
