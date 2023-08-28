@@ -21,6 +21,27 @@ const MovieReducer = (state, action) => {
 
 
 
+        case "CERATE_MOVIE_START":
+            return {
+                ...state,
+                isFetching: true,
+                error: false
+            }
+        case "CERATE_MOVIE_SUCCESS":
+            return {
+                movies: [...state.movies, action.payload],
+                isFetching: false,
+                error: false
+            }
+        case "CERATE_MOVIE_FAILURE":
+            return {
+                ...state,
+                isFetching: false,
+                error: true
+            }
+
+
+
         case "DELETE_MOVIE_START":
             return {
                 ...state,

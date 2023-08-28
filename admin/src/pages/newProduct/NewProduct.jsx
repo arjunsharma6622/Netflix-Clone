@@ -34,15 +34,19 @@ export default function NewProduct() {
   }
 
   const upload = (items) => {
+    console.log('printing items arr ' + items)
+    
     
 
     items.forEach(item => {
+      console.log('printing item ' + item)
+      console.log('printing item label ' + item.label)
+
       console.log(item.file)
       setCurrentFile(item.label)
       const fileName = new Date().getTime() + item.label + item.file?.name;
       const storageRef = ref(storage, `/items/${fileName}`);
       const uploadTask = uploadBytesResumable(storageRef, item.file);
-
 
 
       uploadTask.on("state_changed",
@@ -58,22 +62,99 @@ export default function NewProduct() {
           getDownloadURL(uploadTask.snapshot.ref).then((url) => {
             setMovie({ ...movie, [item.label]: url })
             setUploaded(uploaded + 1)
+            console.log('uploaded ' + uploaded)
           })
         }
       )
 
+      console.log('upload task is success')
+
     })
   }
 
-  const handleUpload = (e) => {
-    e.preventDefault()
-    upload([
+  // const handleUpload = (e) => {
+  //   e.preventDefault()
+  //   upload([
+  //     { file: image, label: "img" },
+  //     { file: imageTitle, label: "imgTitle" },
+  //     { file: imageSm, label: "imgSm" },
+  //     { file: video, label: "video" },
+  //     { file: trailer, label: "trailer" },
+  //   ])
+  // }
+
+
+
+
+
+  // ...
+
+const uploadItem = async (item) => {
+  console.log('printing item ' + item);
+  console.log('printing item label ' + item.label);
+
+  setCurrentFile(item.label)
+
+  const fileName = new Date().getTime() + item.label + item.file?.name;
+  const storageRef = ref(storage, `/items/${fileName}`);
+  const uploadTask = uploadBytesResumable(storageRef, item.file);
+
+  return new Promise((resolve, reject) => {
+    uploadTask.on("state_changed",
+      (snapshot) => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        setProgress(progress);
+        console.log("Upload of " + item.file.name + " is " + progress + "% done");
+      },
+      (error) => {
+        console.log(error);
+        reject(error);
+      },
+      async () => {
+        try {
+          const url = await getDownloadURL(uploadTask.snapshot.ref);
+          // setMovie({ ...movie, [item.label]: url });
+          setMovie((prev) => ({ ...prev, [item.label]: url }));
+          // setUploaded(uploaded + 1);
+          setUploaded((prev) => prev + 1);
+          console.log('uploaded ' + uploaded);
+          console.log('upload task is success');
+          resolve();
+        } catch (error) {
+          console.log(error);
+          reject(error);
+        }
+      }
+    );
+  });
+};
+
+const uploadAllItems = async (items) => {
+  for (const item of items) {
+    await uploadItem(item);
+  }
+};
+
+const handleUpload = async (e) => {
+  e.preventDefault();
+  try {
+    await uploadAllItems([
       { file: image, label: "img" },
       { file: imageTitle, label: "imgTitle" },
       { file: imageSm, label: "imgSm" },
       { file: video, label: "video" },
       { file: trailer, label: "trailer" },
-    ])
+    ]);
+    console.log('All uploads completed');
+  } catch (error) {
+    console.log('Error during uploads:', error);
+  }
+};
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    
   }
 
 
@@ -144,7 +225,7 @@ export default function NewProduct() {
         </div>
 
         {uploaded === 5 ? (
-          <button className="addProductButton">Create</button>
+          <button className="addProductButton" onClick={handleSubmit}>Create</button>
         ) : (
           <button className="addProductButton" onClick={handleUpload}>Upload</button>
         )}
