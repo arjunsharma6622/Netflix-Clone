@@ -3,10 +3,25 @@ import "./product.css";
 import Chart from "../../components/chart/Chart"
 import { Publish } from "@material-ui/icons";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import { useState } from "react";
 
 export default function Product() {
+
+    const [movie, setMovie] = useState({});
+
     const location = useLocation();
-    const movie = location.movie;
+    const movieData = location.movie;
+
+
+
+    const handleChange = (e) => {
+        e.preventDefault();
+        const value = e.target.value
+        setMovie({ ...movie, [e.target.name]: value })
+    }
+
+    console.log(movie)
+
   return (
     <div className="product">
       <div className="productTitleContainer">
@@ -20,24 +35,24 @@ export default function Product() {
           <div className="productTopRight">
               <div className="productInfoTop">
                   <img src={movie.img} alt="" className="productInfoImg" />
-                  <span className="productName">{movie.title}</span>
+                  <span className="productName">{movieData.title}</span>
               </div>
               <div className="productInfoBottom">
                   <div className="productInfoItem">
                       <span className="productInfoKey">id:</span>
-                      <span className="productInfoValue">{movie._id}</span>
+                      <span className="productInfoValue">{movieData._id}</span>
                   </div>
                   <div className="productInfoItem">
                       <span className="productInfoKey">Genre :</span>
-                      <span className="productInfoValue">{movie.genre}</span>
+                      <span className="productInfoValue">{movieData.genre}</span>
                   </div>
                   <div className="productInfoItem">
                       <span className="productInfoKey">Year :</span>
-                      <span className="productInfoValue">{movie.year}</span>
+                      <span className="productInfoValue">{movieData.year}</span>
                   </div>
                   <div className="productInfoItem">
                       <span className="productInfoKey">Limit : </span>
-                      <span className="productInfoValue">{movie.limit ? movie.limit : "-"}</span>
+                      <span className="productInfoValue">{movieData.limit ? movieData.limit : "-"}</span>
                   </div>
               </div>
           </div>
@@ -46,24 +61,27 @@ export default function Product() {
           <form className="productForm">
               <div className="productFormLeft">
                   <label>Movie Title</label>
-                  <input type="text" placeholder={movie.title} />
+                  <input type="text" placeholder={movieData.title} onChange={handleChange} name="title"/>
                   <label>Year</label>
-                  <input type="text" placeholder={movie.year} />
+                  <input type="text" placeholder={movieData.year} onChange={handleChange} name="year"/>
                   <label>Genre</label>
-                  <input type="text" placeholder={movie.genre} />
+                  <input type="text" placeholder={movieData.genre} onChange={handleChange} name="genre"/>
                   <label>Limit</label>
-                  <input type="text" placeholder={movie.limit} />
+                  <input type="text" placeholder={movieData.limit} onChange={handleChange} name="limit"/>
                   <label>Trailer</label>
-                  <input type="file" placeholder={movie.genre} />
+                  <video src={movieData.trailer} controls width={"300px"} height={"300px"}/>
+                  <input type="file"/>
                   <label>Video</label>
-                  <input type="file" placeholder={movie.limit} />
+                  {/* <img src={movie.video} alt="" width={"100px"} height={"100px"}/> */}
+                  <video src={movieData.video} controls width={"300px"} height={"300px"}/>
+                  <input type="file"/>
 
 
 
               </div>
               <div className="productFormRight">
                   <div className="productUpload">
-                      <img src={movie.img} alt="" className="productUploadImg" />
+                      <img src={movieData.img} alt="" className="productUploadImg" />
                       <label for="file">
                           <Publish/>
                       </label>
