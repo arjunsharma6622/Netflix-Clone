@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./newProduct.css";
 // import storage from "../../fbase";
 import app from "../../firebase"; // Import as default
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { createMovie } from "../../context/movieContext/apiCalls";
+import {MovieContext} from '../../context/movieContext/MovieContext'
 const storage = getStorage(app);
 
 
@@ -20,6 +22,9 @@ export default function NewProduct() {
   const [uploaded, setUploaded] = useState(0)
   const [progress, setProgress] = useState(0)
   const [currentFile, setCurrentFile] = useState('')
+
+
+  const {dispatch} = useContext(MovieContext)
 
   console.log(movie)
   console.log(`Trailer ${trailer?.name}`)
@@ -154,7 +159,7 @@ const handleUpload = async (e) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    
+    createMovie(movie, dispatch)
   }
 
 
