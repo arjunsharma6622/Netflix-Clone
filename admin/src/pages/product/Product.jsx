@@ -4,13 +4,21 @@ import Chart from "../../components/chart/Chart"
 import { Publish } from "@material-ui/icons";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { useState } from "react";
+import { updateMovie } from "../../context/movieContext/apiCalls";
+import { useContext } from "react";
+import { MovieContext } from "../../context/movieContext/MovieContext";
 
 export default function Product() {
 
-    const [movie, setMovie] = useState({});
-
     const location = useLocation();
     const movieData = location.movie;
+
+    const {dispatch} = useContext(MovieContext)
+
+
+    const [movie, setMovie] = useState({_id : movieData._id});
+
+
 
 
 
@@ -18,6 +26,13 @@ export default function Product() {
         e.preventDefault();
         const value = e.target.value
         setMovie({ ...movie, [e.target.name]: value })
+    }
+
+
+
+    const handleUpdate = (e) => {
+        e.preventDefault();
+        updateMovie(movie, dispatch)
     }
 
     console.log(movie)
@@ -87,7 +102,7 @@ export default function Product() {
                       </label>
                       <input type="file" id="file" style={{display:"none"}} />
                   </div>
-                  <button className="productButton">Update</button>
+                  <button className="productButton" onClick={handleUpdate}>Update</button>
               </div>
           </form>
       </div>
