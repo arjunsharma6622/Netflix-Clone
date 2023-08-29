@@ -17,7 +17,7 @@ const Home = ({type}) => {
         const movies = await axios.get(`http://localhost:8000/api/list${type ? "?type=" + type : ""}${genre ? "&genre=" + genre : ""}`, 
         {
           headers : {
-            token : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYTBiYWFkZmY1YTEyOTg0ZmY5YjgwYSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY5MTkwMDEwOSwiZXhwIjoxNjkyMzMyMTA5fQ.JoyU2BSfqnjispQFCAGC18YfwXylBFHzj9MKoab-ArM"
+            token : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYTBiYWFkZmY1YTEyOTg0ZmY5YjgwYSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY5MzMyOTQ0NywiZXhwIjoxNjkzNzYxNDQ3fQ.19XNZmNaA8-ah0W_rGifdwB-rH53lpiHJknPi88UHHk"
         }
         })
         setLists(movies.data)
