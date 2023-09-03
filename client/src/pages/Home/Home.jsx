@@ -14,10 +14,10 @@ const Home = ({type}) => {
   useEffect(() => {
     const fetch_list = async () => {
       try{
-        const movies = await axios.get(`http://localhost:8000/api/list${type ? "?type=" + type : ""}${genre ? "&genre=" + genre : ""}`, 
+        const movies = await axios.get(`http://localhost:8000/api/lists${type ? "?type=" + type : ""}${genre ? "&genre=" + genre : ""}`, 
         {
           headers : {
-            token : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYTBiYWFkZmY1YTEyOTg0ZmY5YjgwYSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY5MzMyOTQ0NywiZXhwIjoxNjkzNzYxNDQ3fQ.19XNZmNaA8-ah0W_rGifdwB-rH53lpiHJknPi88UHHk"
+            token : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYTBiYWFkZmY1YTEyOTg0ZmY5YjgwYSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY5Mzc2NTA2NiwiZXhwIjoxNjk0MTk3MDY2fQ.u6lQJRmn56bWI2OQUinCg-iX3RbLZXoHN9optEpyGrM"
         }
         })
         setLists(movies.data)
