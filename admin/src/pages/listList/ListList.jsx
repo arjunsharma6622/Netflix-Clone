@@ -4,14 +4,15 @@ import { DeleteOutline } from "@material-ui/icons";
 import { productRows } from "../../dummyData";
 import { Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import { MovieContext } from "../../context/movieContext/MovieContext";
 import { deleteMovie, getMovies } from "../../context/movieContext/apiCalls";
+import { ListContext } from "../../context/listContext/ListContext";
+import { getLists } from "../../context/listContext/apiCalls";
 
 export default function ListList() {
-  const {movies, dispatch} = useContext(MovieContext)
+  const {lists, dispatch} = useContext(ListContext)
 
   useEffect(() => {
-    getMovies(dispatch)
+    getLists(dispatch)
   },[dispatch])
 
   const handleDelete = (id) => {
@@ -19,27 +20,13 @@ export default function ListList() {
     deleteMovie(id, dispatch)
   };
 
-  console.log(movies)
+  console.log(lists)
 
   const columns = [
     { field: "_id", headerName: "ID", width: 90 },
-    {
-      field: "Movies",
-      headerName: "Movies",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="productListItem">
-            <img className="productListImg" src={params.row.img} alt="" />
-            {params.row.title}
-          </div>
-        );
-      },
-    },
+    { field: "title", headerName: "title", width: 120 },
     { field: "genre", headerName: "gener", width: 120 },
-    { field: "year", headerName: "year", width: 120 },
-    // { field: "limit", headerName: "limit", width: 120 },
-    { field: "isSeries", headerName: "isSeries", width: 120 },
+    { field: "type", headerName: "type", width: 120 },
 
     {
       field: "action",
@@ -64,7 +51,7 @@ export default function ListList() {
   return (
     <div className="productList">
       <DataGrid
-        rows={movies}
+        rows={lists}
         disableSelectionOnClick
         columns={columns}
         pageSize={8}
