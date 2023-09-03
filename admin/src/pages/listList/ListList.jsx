@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { deleteMovie, getMovies } from "../../context/movieContext/apiCalls";
 import { ListContext } from "../../context/listContext/ListContext";
-import { getLists } from "../../context/listContext/apiCalls";
+import { deleteList, getLists } from "../../context/listContext/apiCalls";
 
 export default function ListList() {
   const {lists, dispatch} = useContext(ListContext)
@@ -16,17 +16,16 @@ export default function ListList() {
   },[dispatch])
 
   const handleDelete = (id) => {
-    // setData(data.filter((item) => item.id !== id));
-    deleteMovie(id, dispatch)
+    deleteList(id, dispatch)
   };
 
   console.log(lists)
 
   const columns = [
-    { field: "_id", headerName: "ID", width: 90 },
-    { field: "title", headerName: "title", width: 120 },
-    { field: "genre", headerName: "gener", width: 120 },
-    { field: "type", headerName: "type", width: 120 },
+    { field: "_id", headerName: "ID", width: 250 },
+    { field: "title", headerName: "title", width: 250 },
+    { field: "genre", headerName: "gener", width: 150 },
+    { field: "type", headerName: "type", width: 150 },
 
     {
       field: "action",
