@@ -21,24 +21,24 @@ const ListReducer = (state, action) => {
 
 
 
-        // case "CERATE_MOVIE_START":
-        //     return {
-        //         ...state,
-        //         isFetching: true,
-        //         error: false
-        //     }
-        // case "CERATE_MOVIE_SUCCESS":
-        //     return {
-        //         movies: [...state.movies, action.payload],
-        //         isFetching: false,
-        //         error: false
-        //     }
-        // case "CERATE_MOVIE_FAILURE":
-        //     return {
-        //         ...state,
-        //         isFetching: false,
-        //         error: true
-        //     }
+        case "CERATE_LIST_START":
+            return {
+                ...state,
+                isFetching: true,
+                error: false
+            }
+        case "CERATE_LIST_SUCCESS":
+            return {
+                movies: [...state.lists, action.payload],
+                isFetching: false,
+                error: false
+            }
+        case "CERATE_LIST_FAILURE":
+            return {
+                ...state,
+                isFetching: false,
+                error: true
+            }
 
         // case "UPDATE_MOVIE_START":
         //     return {

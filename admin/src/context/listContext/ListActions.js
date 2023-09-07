@@ -26,16 +26,16 @@ export const deleteListFailure = () => ({
 
 
 
-// export const createMoviesStart = () => ({
-//     type : "CREATE_MOVIE_START"
-// });
-// export const createMoviesSuccess = (movie) => ({
-//     type : "CREATE_MOVIE_SUCCESS",
-//     payload : movie,
-// });
-// export const createMoviesFailure = () => ({
-//     type : "CREATE_MOVIE_FAILURE"
-// });
+export const createListStart = () => ({
+    type : "CREATE_LIST_START"
+});
+export const createListSuccess = (list) => ({
+    type : "CREATE_LIST_SUCCESS",
+    payload : list,
+});
+export const createListFailure = () => ({
+    type : "CREATE_LIST_FAILURE"
+});
 
 
 

@@ -6,6 +6,7 @@ import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/
 import { createMovie, getMovies } from "../../context/movieContext/apiCalls";
 import { MovieContext } from '../../context/movieContext/MovieContext'
 import { ListContext } from "../../context/listContext/ListContext";
+import { createList } from "../../context/listContext/apiCalls";
 const storage = getStorage(app);
 
 
@@ -42,13 +43,14 @@ export default function NewList() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    createList(list, dispatch)
   }
 
 
 
   return (
     <div className="newProduct">
-      <h1 className="addProductTitle">New Movie</h1>
+      <h1 className="addProductTitle">New List</h1>
       <form className="addProductForm" style={{display: "flex", alignItems: "start"}}>
 
         <div className="formLeft">
@@ -56,12 +58,12 @@ export default function NewList() {
 
           <div className="addProductItem">
             <label>Title</label>
-            <input type="text" placeholder="John Wick" name="title" onChange={handleChange} />
+            <input type="text" placeholder="Romantic Movies" name="title" onChange={handleChange} />
           </div>
 
           <div className="addProductItem">
             <label>Genre</label>
-            <input type="text" placeholder="Genre" name="genre" onChange={handleChange} />
+            <input type="text" placeholder="Romance" name="genre" onChange={handleChange} />
           </div>
 
           <div className="addProductItem">

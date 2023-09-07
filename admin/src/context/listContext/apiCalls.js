@@ -1,4 +1,4 @@
-import { deleteListFailure, deleteListStart, deleteListSuccess, getListsFailure, getListsStart, getListsSuccess } from "./ListActions"
+import { createListFailure, createListStart, createListSuccess, deleteListFailure, deleteListStart, deleteListSuccess, getListsFailure, getListsStart, getListsSuccess } from "./ListActions"
 import axios from "axios"
 
 export const getLists = async (dispatch) => {
@@ -22,21 +22,21 @@ export const getLists = async (dispatch) => {
 
 
 
-// export const createMovie = async (movie, dispatch) => {
-//     dispatch(createMoviesStart())
+export const createList = async (list, dispatch) => {
+    dispatch(createListStart())
 
-//     try{
-//         const res = await axios.post(`http://localhost:8000/api/movie/`, movie , {
-//             headers: {
-//                 "token": "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken
-//             }
-//         })
-//         dispatch(createMoviesSuccess(res.data))
-//     }
-//     catch(err){
-//         dispatch(createMoviesFailure())
-//     }
-// }
+    try{
+        const res = await axios.post(`http://localhost:8000/api/lists/`, list , {
+            headers: {
+                "token": "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken
+            }
+        })
+        dispatch(createListSuccess(res.data))
+    }
+    catch(err){
+        dispatch(createListFailure())
+    }
+}
 
 
 // export const updateMovie = async (movie, dispatch) => {
