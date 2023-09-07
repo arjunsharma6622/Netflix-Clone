@@ -7,6 +7,7 @@ import { createMovie, getMovies } from "../../context/movieContext/apiCalls";
 import { MovieContext } from '../../context/movieContext/MovieContext'
 import { ListContext } from "../../context/listContext/ListContext";
 import { createList } from "../../context/listContext/apiCalls";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 const storage = getStorage(app);
 
 
@@ -17,6 +18,8 @@ export default function NewList() {
 
 
   const [list, setList] = useState(null)
+
+  const history = useHistory()
 
 
   const { dispatch } = useContext(ListContext)
@@ -44,6 +47,7 @@ export default function NewList() {
   const handleSubmit = (e) => {
     e.preventDefault()
     createList(list, dispatch)
+    history.push('/lists')
   }
 
 
