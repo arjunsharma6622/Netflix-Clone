@@ -40,13 +40,13 @@ export const createListFailure = () => ({
 
 
 
-// export const updateMoviesStart = () => ({
-//     type : "UPDATE_MOVIE_START"
-// });
-// export const updateMoviesSuccess = (movie) => ({
-//     type : "UPDATE_MOVIE_SUCCESS",
-//     payload : movie,
-// });
-// export const updateMoviesFailure = () => ({
-//     type : "UPDATE_MOVIE_FAILURE"
-// });
+export const updateListStart = () => ({
+    type : "UPDATE_LIST_START"
+});
+export const updateListSuccess = (movie) => ({
+    type : "UPDATE_LIST_SUCCESS",
+    payload : movie,
+});
+export const updateListFailure = () => ({
+    type : "UPDATE_LIST_FAILURE"
+});

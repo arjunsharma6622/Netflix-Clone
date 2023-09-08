@@ -5,6 +5,7 @@ import app from "../../firebase"; // Import as default
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { createMovie } from "../../context/movieContext/apiCalls";
 import {MovieContext} from '../../context/movieContext/MovieContext'
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 const storage = getStorage(app);
 
 
@@ -22,6 +23,9 @@ export default function NewProduct() {
   const [uploaded, setUploaded] = useState(0)
   const [progress, setProgress] = useState(0)
   const [currentFile, setCurrentFile] = useState('')
+
+
+  const history = useHistory()
 
 
   const {dispatch} = useContext(MovieContext)
@@ -160,6 +164,7 @@ const handleUpload = async (e) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     createMovie(movie, dispatch)
+    history.push('/movies')
   }
 
 

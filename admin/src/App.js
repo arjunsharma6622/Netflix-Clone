@@ -48,15 +48,13 @@ function App() {
           <Route path="/movie/:movieId">
             <Product />
           </Route>
-          <Route path="/newproduct">
+          <Route path="/newmovie">
             <NewProduct />
           </Route>
           <Route path="/product/:productId">
             <Product />
           </Route>
-          <Route path="/product/:productId">
-            <Product />
-          </Route>
+
           <Route path="/lists">
             <ListList />
           </Route>
