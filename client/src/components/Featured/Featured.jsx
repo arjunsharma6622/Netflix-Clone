@@ -5,7 +5,7 @@ import { useState } from 'react'
 import "./featured.scss"
 import axios from "axios"
 
-const Featured = ({type}) => {
+const Featured = ({type, setGenre}) => {
     const [content, setContent] = useState()
 
     useEffect(() => {
@@ -28,9 +28,10 @@ const Featured = ({type}) => {
         {type && (
             <div className="category">
                 <span>{type === "movie" ? "Movies" : "Series"}</span>
-                <select name='gener' id='gener'>
+                <select name='gener' id='gener' onChange={(e) => setGenre(e.target.value)}>
                     <option>Gener</option>
                     <option value="adventure">Adventure</option>
+                    <option value="Action">Action</option>
                     <option value="comedy">Comedy</option>
                     <option value="crime">Crime</option>
                     <option value="fantasy">Fantasy</option>
@@ -46,9 +47,9 @@ const Featured = ({type}) => {
                 </select>
             </div>
         )}
-        <img src={content && content[0].img} alt="" width={"100%"}/>
+        <img src={content && content[0].imgTitle} alt="" width={"100%"}/>
         <div className="info">
-            <img src={content && content[0].imgTitle} alt="" className='trailer_img'/>
+            <img src={content && content[0].img} alt="" className='trailer_img'/>
             <span className="desc">
                 {content && content[0].desc}
             </span>
