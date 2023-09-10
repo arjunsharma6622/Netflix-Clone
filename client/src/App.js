@@ -5,10 +5,12 @@ import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom"
+import { useContext } from "react";
+import {AuthContext} from "./authContext/AuthContext"
 
 
 function App() {
-  const user = true
+  const user = false
   return (
 
     <BrowserRouter>
